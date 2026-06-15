@@ -23,7 +23,7 @@ jobs:
         run: python3 -m pip install --upgrade platformio
 
       - name: Build RAK4631 repeater
-        run: pio run -e RAK_4631_repeater
+        run: pio run -d variants/rak4631 -e RAK_4631_repeater
 
       - name: Collect UF2
         run: |
