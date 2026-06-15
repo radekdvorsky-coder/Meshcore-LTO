@@ -1,0 +1,39 @@
+name: Build RAK4631 LTO UF2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache PlatformIO
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.platformio
+            .pio
+          key: pio-${{ runner.os }}-${{ hashFiles('**/platformio.ini') }}
+
+      - name: Install PlatformIO
+        run: python3 -m pip install --upgrade platformio
+
+      - name: Build RAK4631 repeater
+        run: pio run -e RAK_4631_repeater
+
+      - name: Collect UF2
+        run: |
+          mkdir -p firmware
+          find .pio/build -name "*.uf2" -exec cp {} firmware/ \;
+          find .pio/build -name "*.bin" -exec cp {} firmware/ \;
+          ls -la firmware
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: RAK4631-LTO-firmware
+          path: firmware/
