@@ -22,7 +22,7 @@ jobs:
       - name: Install PlatformIO
         run: python3 -m pip install --upgrade platformio
       - name: Install missing Adafruit LittleFS library
-        run: pio pkg install --library "adafruit/Adafruit LittleFS"
+        run: pio pkg install --library "adafruit/Adafruit InternalFileSystem on Bluefruit nRF52"
       - name: Build RAK4631 repeater
         run: pio run -e RAK_4631_repeater
 
