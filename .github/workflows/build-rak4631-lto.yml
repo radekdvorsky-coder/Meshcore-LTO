@@ -31,9 +31,6 @@ jobs:
           cp -r ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_LittleFS/src/* \
             lib/Adafruit_LittleFS/src/
 
-          cp -r ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_LittleFS/src/* \
-            ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/InternalFileSystem/src/
-
           pio run -e RAK_4631_repeater
 
       - name: Collect UF2
