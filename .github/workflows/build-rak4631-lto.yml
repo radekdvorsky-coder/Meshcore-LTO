@@ -27,10 +27,11 @@ jobs:
           pio pkg install -e RAK_4631_repeater
 
           mkdir -p lib/Adafruit_LittleFS/src
-          mkdir -p ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/InternalFileSystem/src
 
-          cp -r ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_LittleFS/src/* lib/Adafruit_LittleFS/src/
-          cp -r ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_LittleFS/src/* ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/InternalFileSystem/src/
+          cp -r ~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_LittleFS/src/* \
+            lib/Adafruit_LittleFS/src/
+
+          export CPATH="$GITHUB_WORKSPACE/lib/Adafruit_LittleFS/src:$CPATH"
 
           pio run -e RAK_4631_repeater
 
